@@ -29,3 +29,12 @@ module.exports.updateMenuItem = asyncHandler(async (id, item)=>{
 
     return CanteenMenu.findByIdAndUpdate(id, item);
 })
+
+module.exports.getTotalPrice = asyncHandler(async (items)=>{
+    var price = 0;
+    for (let item of items) {
+       let item_ = await CanteenMenu.findById(item.menuItem);
+       price += item_.price*item.quantity;
+    }
+    return price;
+})

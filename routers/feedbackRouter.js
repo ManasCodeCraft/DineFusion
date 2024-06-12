@@ -1,12 +1,13 @@
 const express = require('express')
-const { getAllFeedback, createFeedback, getFeedbackById, updateFeedbackById, deleteFeedbackById} =require('../controllers/feedbackControllers.js')
+const { getAllFeedback, createFeedback } =require('../controllers/feedbackControllers.js')
 const { GetFeedbackPage, feedbackthanks } = require('../controllers/mainController')
-const { StaffProtectRoute } = require('../controllers/authControllers')
+const { StaffProtectRoute } = require('../middlewares/authMiddlewares')
+const { verifyFeedback } = require('../middlewares/feedbackMiddlewares.js')
 
 const feedbackRouter = express.Router()
 
 feedbackRouter.route('/fetchallfeedback').get(StaffProtectRoute, getAllFeedback)
-feedbackRouter.route('/create').post(createFeedback)
+feedbackRouter.route('/create').post(verifyFeedback ,createFeedback)
 feedbackRouter.route('/getfeedbackpage').get(StaffProtectRoute, GetFeedbackPage)
 feedbackRouter.route('/thanks').get(feedbackthanks)
 

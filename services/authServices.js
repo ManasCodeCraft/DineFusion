@@ -22,3 +22,11 @@ module.exports.removeStaffMember = asyncHandler(async (staffId)=>{
 module.exports.getUserByGoogleId = asyncHandler(async (googleId)=>{
     return await User.findOne({googleId: googleId});
 })
+
+module.exports.getUserName = asyncHandler(async (userId)=>{
+    var user = await User.findById(userId);
+    if(!user){
+        user = {name : ''}
+    }   
+    return user.name;
+})

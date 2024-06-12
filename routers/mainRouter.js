@@ -1,5 +1,5 @@
 const {mainpage, menupage, editmenu, managestaff, userFeedback, getPaymentPage} = require('../controllers/mainController')
-const { OwnerProtectRoute, protectRoute } = require('../controllers/authControllers')
+const { OwnerProtectRoute, protectRoute } = require('../middlewares/authMiddlewares')
 const express = require('express')
 
 const mainRouter = express.Router()
