@@ -1,4 +1,4 @@
-const { asyncRequestHandler } = require("../utils/errorHandlers");
+const { asyncRequestHandler } = require("../utils/functionWrappers");
 const multer = require('multer');
 
 module.exports.verifyNewItem = asyncRequestHandler((req, res,next)=>{
@@ -6,7 +6,7 @@ module.exports.verifyNewItem = asyncRequestHandler((req, res,next)=>{
     if(!itemName || !price || !category || !image ){
         throw getError(400, "Error", "Failed to add item please fill all the required fields");
     }
-    req.body.available = req.body.available || true;
+    req.body.available = available || true;
     next();
 })
 
@@ -20,7 +20,7 @@ module.exports.itemimageupload = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
             let category = req.body.category
-            cb(null, `./public/assets/img/menu/${category}`); 
+            cb(null, `./public/img/menu/${category}`); 
         },
         filename: function (req, file, cb) {
             cb(null, Date.now() + '-' + file.originalname);

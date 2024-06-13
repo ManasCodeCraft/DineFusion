@@ -1,5 +1,5 @@
 const { ifOrderIsCompleted, getOrderFeedback } = require("../services/orderServices");
-const { asyncRequestHandler } = require("../utils/errorHandlers");
+const { asyncRequestHandler } = require("../utils/functionWrappers");
 
 
 module.exports.verifyFeedback = asyncRequestHandler(async (req, res, next)=>{

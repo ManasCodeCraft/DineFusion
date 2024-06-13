@@ -1,0 +1,97 @@
+.body-2{
+  font-family: Arial, sans-serif;
+  margin: 10px;
+  padding: 10px;
+  background-color: #d4e0ce; /* Changed background color to greenish */
+}
+
+.feedback-container {
+  max-width: 800px;
+  margin: auto; /* Added margin to center the container vertically */
+  margin-top: 7rem !important;
+  padding: 20px;
+  background-color: #f0fff0; /* Changed background color to light green */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-entry {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  margin-bottom: 10px;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+span.order-details {
+  font-style: italic;
+  margin-bottom: 200px !important;
+}
+
+.feedback-message {
+  margin-bottom: 10px;
+}
+
+.feedback-message span {
+  display: block;
+  margin-bottom: 10px; /* Increased margin between user experience and order details */
+}
+
+.feedback-message .feedback-experience {
+  margin-bottom: 10px; /* Added margin for user experience */
+}
+
+.feedback-message .feedback-improvements {
+  margin-bottom: 10px; /* Added margin for improvements */
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.stars {
+  color: #99cc99; /* Changed star color to light green */
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.rating-value {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .feedback-container {
+      max-width: 100%;
+      padding: 10px;
+  }
+}
+
+.feedback-header{
+  text-align: center;
+  color: rgb(16, 28, 14);
+  background-color: #99cc99;
+  margin-top: 0% !important;
+  padding-top: 0% !important;
+  
+}
+
+.heading{
+  margin-top: 0;
+  padding-top: 0;
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-left: 0%;
+  padding-right: 0%;
+}
+.feedback-message{
+  margin-top: 10px;
+
+}

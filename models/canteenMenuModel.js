@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('../config/database');
 
 const canteenMenuSchema = new mongoose.Schema({
   itemName: { type: String, required: [true, 'Item name is required'], unique: true },

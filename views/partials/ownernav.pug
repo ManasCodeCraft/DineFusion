@@ -1,0 +1,26 @@
+header.header.fixed-top.d-flex.align-items-center#header
+  .container.d-flex.align-items-center.justify-content-between
+    a.logo.d-flex.align-items-center.me-auto.me-lg-0(href='/')
+      img(src='/img/logo.png' alt='')
+    nav#navbar.navbar
+      ul#menu-items
+        li
+          a.owner-nav-action(href='/managestaff') Manage Staff
+        li
+          a.owner-nav-action(href='/editablemenu') Edit Menu
+        li
+          a(href='/order/order-request') Order Request
+        li
+          a(href='/feedback/getfeedbackpage') Users Feedback
+    a.btn.btn-info.navauthbtn.logoutbtn Logout
+    i.mobile-nav-toggle.mobile-nav-show.bi.bi-list.dropdown-toggle(type='button', data-bs-toggle='dropdown', aria-expanded='false')
+    ul.dropdown-menu
+      li
+        a.dropdown-item.active(href='/order/order-request') Order Request
+      li
+        a.dropdown-item.owner-nav-action(href='/editablemenu') Edit Menu
+      li
+        a.dropdown-item.owner-nav-action(href='/managestaff') Manage Staff
+      li
+        a.dropdown-item(href='/feedback/getfeedbackpage') User Feedback
+    i.mobile-nav-toggle.mobile-nav-hide.d-none.bi.bi-x

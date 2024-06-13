@@ -1,0 +1,32 @@
+div.modal.fade(
+  id="addItemModal",
+  tabindex="-1",
+  aria-labelledby="editModalLabel",
+  aria-hidden="true"
+)
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        h5#editModalLabel.modal-title Add Item
+      div.modal-body
+        form#additemform(action="/menu/additem", enctype="multipart/form-data")
+          .mb-3
+            label.form-label(for="addItemName") Item Name
+            input#addItemName.form-control(type="text", placeholder="Enter item name", name="itemName")
+          .mb-3
+            label.form-label(for="editItemPrice") Item Price
+            input#editItemPrice.form-control(type="number", placeholder="Enter item price", name="price")
+          .mb-3
+            label.form-label(for="category") Category
+            select#category.form-select(name="category")
+              option(value="chinese") Chinese
+              option(value="north-indian") North Indian
+              option(value="south-indian") South Indian
+              option(value="drinks") Drinks
+              option(value="ice-cream") Ice-Cream
+          .mb-3
+            label.form-label(for="image") Item Image
+            input#image.form-control(type="file", name="image", accept="image/*")
+          button.btn.btn-primary(type="submit") Add
+      div.modal-footer
+        button.btn.btn-secondary(type="button", data-bs-dismiss="modal") Close

@@ -1,4 +1,4 @@
-const { asyncHandler } = require("../utils/errorHandlers");
+const { asyncHandler } = require("../utils/functionWrappers");
 const CanteenMenu = require('../models/canteenMenuModel');
 const fs = require('fs').promises
 

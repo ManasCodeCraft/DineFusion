@@ -1,0 +1,18 @@
+section#hero.hero
+  #carouselExampleAutoplaying.carousel.slide.herobanner(data-bs-ride='carousel')
+    .carousel-inner
+      .carousel-item.active
+        img.d-block.w-100(src='./img/hero/2.webp', alt='...')
+      .carousel-item
+        img.d-block.w-100(src='./img/hero/3.avif', alt='...')
+      .carousel-item
+        img.d-block.w-100(src='./img/hero/5.avif', alt='...')
+    button.carousel-control-prev(type='button', data-bs-target='#carouselExampleAutoplaying', data-bs-slide='prev')
+      span.carousel-control-prev-icon(aria-hidden='true')
+      span.visually-hidden Previous
+    button.carousel-control-next(type='button', data-bs-target='#carouselExampleAutoplaying', data-bs-slide='next')
+      span.carousel-control-next-icon(aria-hidden='true')
+      span.visually-hidden Next
+  .bannertext
+    h1.display-1.fw-bold Enjoy Delicious Food
+    a.btn.btn-primary.btn-lg(href='/menu#menu') Order Now

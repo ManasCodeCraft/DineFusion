@@ -1,0 +1,18 @@
+.modal-header{
+    background-color: rgb(58, 58, 255) !important;
+    color: white !important
+}
+
+.modal-header p{
+   font-size: small !important;
+   color: rgba(255,255,255,0.5);
+   margin-left: 15px;
+   padding: 4px;
+}
+
+.error-border {
+    border: 1px solid red !important;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5) !important; /* Red shadow with some transparency */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease !important; /* Smooth transition effect */
+  }
+  

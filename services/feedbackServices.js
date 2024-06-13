@@ -1,6 +1,6 @@
 const Feedback = require('../models/feedbackModel');
 const Order = require('../models/Order')
-const { asyncHandler } = require('../utils/errorHandlers')
+const { asyncHandler } = require('../utils/functionWrappers')
 
 module.exports.addFeedback = asyncHandler(async (data)=>{
     const feedback = new Feedback(data);

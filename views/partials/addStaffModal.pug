@@ -1,0 +1,27 @@
+div.modal.fade(id="authModalStaffSignUp", aria-hidden="true", aria-labelledby="authModalToggleLabel4")
+  div.modal-dialog.modal-dialog-centered
+    div.modal-content
+      div.modal-header
+        h1#authModalToggleLabel4.modal-title.fs-5 Add a staff
+        button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
+      div.modal-body
+        form.signUpFormStaff(action="/auth/addstaff", data-role="staff")
+          .mb-3
+            label.form-label(for="fullnameStaff") FullName:
+            input#fullnameStaff.form-control(type="text", name="name")
+            .button.text-danger.name_error
+          .mb-3
+            label.form-label(for="emailStaff") Email:
+            input#emailStaff.form-control(type="text", name="email")
+            .button.text-danger.email_error
+          .mb-3
+            label.form-label(for="signupPasswordStaff") Password:
+            input#signupPasswordStaff.form-control(type="password", name="password")
+            .button.text-danger.password_error
+          .mb-3
+            label.form-label(for="confirmPasswordStaff") Confirm Password:
+            input#confirmPasswordStaff.form-control(type="password", name="confirmPassword")
+            .button.text-danger.confirmPassword_error
+          button.btn.btn-primary.signupbtn(type="submit") Signup
+          .login_error.text-danger
+      div.modal-footer

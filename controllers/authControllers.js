@@ -3,9 +3,10 @@ const passport = require("passport");
 const { prepareLoginCookie } = require("../utils/cookieHelpers");
 const { googleClientID, googleClientSecret, googleCallBack, logincookietoken, ownerlogintoken } = require("../config/config");
 const { registerUser, getUserByEmail, fetchAllStaff, removeStaffMember, getUserByGoogleId } = require("../services/authServices");
-const { asyncRequestHandler } = require("../utils/errorHandlers");
+const { asyncRequestHandler } = require("../utils/functionWrappers");
 const { unexpectedError, getError } = require("../utils/format");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const hashkey = require("../config/config").jwtKey;
 
 passport.use(
   new GoogleStrategy(
@@ -106,6 +107,8 @@ module.exports.loginUser = asyncRequestHandler(async (req, res) => {
       login: true,
     };
 
+    console.log('cookie set')
+
     let cookieValue = prepareLoginCookie(mycookie)
 
     res.cookie(...cookieValue);
@@ -126,7 +129,9 @@ module.exports.ownerlogin = asyncRequestHandler(async function (req, res) {
       login: true,
     };
 
-    res.cookie(...prepareLoginCookie(mycookie));
+    const cookieValue = prepareLoginCookie(mycookie)
+
+    res.cookie(...cookieValue);
 
     res.status(200).json({ message: "Login successful" });
 })
@@ -162,6 +167,9 @@ module.exports.checkstafflogin = async function (req, res){
       if (err) {
         req.userid = null;
        return res.status(400).json({'login':false})
+      }
+      if(decoded.owner){
+        return res.status(400).json({'login': false})
       }
       const userid = decoded.user._id;
       req.userid = userid;

@@ -1,0 +1,116 @@
+extends ../layouts/user
+
+block cssStyle 
+  link(href="/css/card.css" rel="stylesheet")
+
+block jsScript 
+  script(src="/js/card.js") 
+
+block content
+  .container-fluid.px-0.card-main-container(id="bg-div")
+    .row.justify-content-center
+      .col-lg-9.col-12
+        .card.card0
+          .d-flex(id="wrapper")
+            //- Sidebar
+            .bg-light.border-right#sidebar-wrapper
+              .sidebar-heading.pt-5.pb-4
+                strong PAY WITH
+              .list-group.list-group-flush
+                a.tabs.list-group-item.bg-light.active1(data-toggle="tab" href="#" id="tab3")
+                  .list-div.my-2
+                    .fa.fa-qrcode
+                    | &nbsp;&nbsp;&nbsp; UPI / QR
+                    #new-label NEW
+                a.tabs.list-group-item.bg-light.disabled(data-toggle="tab" href="#" id="tab1")
+                  .list-div.my-2
+                    .fa.fa-home
+                    | &nbsp;&nbsp; Internet Banking
+                    #new-label Disabled
+                a.tabs.list-group-item.bg-light.disabled(data-toggle="tab" href="#" id="tab2")
+                  .list-div.my-2
+                    .fa.fa-credit-card
+                    | &nbsp;&nbsp; Card
+                    #new-label Disabled
+            //- Page Content
+            #page-content-wrapper
+              .row.pt-3#border-btm
+                .col-4
+                  button#menu-toggle.btn.btn-success.mt-4.ml-3.mb-3
+                    .bar4
+                    .bar4
+                    .bar4
+                .col-8
+                  .row.justify-content-right
+                    .col-12
+                      p.mb-0.mr-4.text-right
+                        | Pay 
+                        span.top-highlight.pricetopay Rs 100
+              .row.justify-content-center
+                .text-center#test Pay
+              .tab-content
+                #menu1.tab-pane
+                  .row.justify-content-center
+                    .col-11
+                      .form-card
+                        h3.mt-0.mb-4.text-center Enter bank details to pay
+                        form(onsubmit="event.preventDefault()")
+                          .row
+                            .col-12
+                              .input-group
+                                input(type="text" id="bk_nm" placeholder="BBB Bank")
+                                label BANK NAME
+                          .row
+                            .col-12
+                              .input-group
+                                input(type="text" name="ben_nm" id="ben-nm" placeholder="John Smith")
+                                label BENEFICIARY NAME
+                            .col-12
+                              .input-group
+                                input(type="text" name="scode" placeholder="ABCDAB1S" class="placeicon" minlength="8" maxlength="11")
+                                label SWIFT CODE
+                          .row
+                            .col-md-12
+                              input.btn.btn-success.placeicon(type="submit" value="Pay $ 100")
+                #menu2.tab-pane
+                  .row.justify-content-center
+                    .col-11
+                      .form-card
+                        h3.mt-0.mb-4.text-center Enter your card details to pay
+                        form(onsubmit="event.preventDefault()")
+                          .row
+                            .col-12
+                              .input-group
+                                input(type="text" id="cr_no" placeholder="0000 0000 0000 0000" minlength="19" maxlength="19")
+                                label CARD NUMBER
+                          .row
+                            .col-6
+                              .input-group
+                                input(type="text" name="exp" id="exp" placeholder="MM/YY" minlength="5" maxlength="5")
+                                label CARD EXPIRY
+                            .col-6
+                              .input-group
+                                input(type="password" name="cvcpwd" placeholder="&#9679;&#9679;&#9679;" class="placeicon" minlength="3" maxlength="3")
+                                label CVV
+                          .row
+                            .col-md-12
+                              input.btn.btn-success.placeicon(type="submit" value="Pay $ 100")
+                #menu3.tab-pane.in.active
+                  .row.justify-content-center
+                    .col-11
+                      h3.mt-0.mb-4.text-center Scan the QR code to pay
+                      .row.justify-content-center
+                        #qr
+                          img(src="/assets/img/qrcode.png" width="200px" height="200px")
+                          .row(style="margin-left: 40px")
+                            .col-12
+                            .input-group.trans_idd
+                              form
+                                .row
+                                  .col-12
+                                    .input-group
+                                      input(type="text" id="transactionId" name="transactionid" placeholder="Enter Transaction Id" required)
+                                    textarea(name="address" id="address" cols="25" rows="5" placeholder="Enter Full Address" style="border-radius: 10px;" required)
+                                .row
+                                  .col-md-12
+                                    input.btn.btn-success.placeicon(type="submit" value="Proceed")

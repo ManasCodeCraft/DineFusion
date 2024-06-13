@@ -1,7 +1,8 @@
-const { asyncRequestHandler } = require("../utils/errorHandlers");
+const { asyncRequestHandler } = require("../utils/functionWrappers");
 const { getError } = require("../utils/format");
 const jwt = require("jsonwebtoken");
 const logincookietoken = require("../config/config").logincookietoken;
+const hashkey = require('../config/config').jwtKey
 
 module.exports.verifySignUpData = asyncRequestHandler(async (req,res,next)=>{
     const name = req.body.name;
@@ -52,8 +53,10 @@ module.exports.protectRoute = async function (req, res, next) {
       if(decoded.owner){
         return next()
       }
+      if(decoded.user){
       const userid = decoded.user._id;
       req.userid = userid;
+      }
       next();
     });
 };

@@ -1,4 +1,4 @@
-const { asyncRequestHandler } = require('../utils/errorHandlers');
+const { asyncRequestHandler } = require('../utils/functionWrappers');
 const { addFeedback, getAllFeedbacks } = require('../services/feedbackServices');
 const { getOrderItems } = require('../services/orderServices');
 

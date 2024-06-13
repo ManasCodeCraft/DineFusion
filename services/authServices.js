@@ -1,9 +1,10 @@
-const { asyncHandler } = require("../utils/errorHandlers");
+const { asyncHandler } = require("../utils/functionWrappers");
 const User = require("../models/authModel");
 
 module.exports.registerUser = asyncHandler(async (user)=>{
     const userObj = new User(user);
-    return await userObj.save();
+    const user_ =  await userObj.save();
+    return user_;
 })
 
 module.exports.getUserByEmail = asyncHandler(async (email)=>{

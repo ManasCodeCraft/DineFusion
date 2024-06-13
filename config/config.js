@@ -10,7 +10,7 @@ const dbCluster = process.env.DB_CLUSTER
 module.exports = {
     
     // Database
-    dbConnectonLink : `mongodb+srv://${dbUserName}:${dbPassword}@${dbCluster}/${dbName}/?retryWrites=true&w=majority`,
+    dbConnectonLink : `mongodb+srv://${dbUserName}:${dbPassword}@${dbCluster}/${dbName}?retryWrites=true&w=majority`,
 
     // server
     port: process.env.PORT,

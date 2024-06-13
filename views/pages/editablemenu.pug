@@ -1,0 +1,66 @@
+extends ../layouts/owner
+
+block jsScript 
+    script(src="/js/editablemenu.js") 
+
+block cssStyle 
+    link(href="/css/menu.css" rel="stylesheet")
+
+block content 
+  section#menu.menu
+    .container(data-aos='fade-up')
+      .section-header
+        button.btn.btn-primary.additembtn.btn-lg Add Item
+      ul.nav.nav-tabs.d-flex.justify-content-center(data-aos='fade-up' data-aos-delay='200')
+        li.nav-item
+          a.nav-link.active.show(data-bs-toggle='tab' data-bs-target='#menu-north-indian')
+            h4 North-Indian
+        // End tab nav item
+        li.nav-item
+          a.nav-link(data-bs-toggle='tab' data-bs-target='#menu-south-indian')
+            h4 South-Indian
+          // End tab nav item
+        li.nav-item
+          a.nav-link(data-bs-toggle='tab' data-bs-target='#menu-chinese')
+            h4 Chinese
+        // End tab nav item
+        li.nav-item
+          a.nav-link(data-bs-toggle='tab' data-bs-target='#menu-drinks')
+            h4 Drinks
+        // End tab nav item
+        li.nav-item
+          a.nav-link(data-bs-toggle='tab' data-bs-target='#menu-ice-cream')
+            h4 Ice-Cream
+        // End tab nav item
+      .tab-content(data-aos='fade-up' data-aos-delay='300')
+        #menu-north-indian.tab-pane.fade.active.show.menu-north-indian
+          .tab-header.text-center
+            p Menu
+            h3 North-Indian
+          .row.gy-5
+        #menu-south-indian.tab-pane.fade.menu-south-indian
+          .tab-header.text-center
+            p Menu
+            h3 South-Indian
+          .row.gy-5
+        #menu-chinese.tab-pane.fade.menu-chinese
+          .tab-header.text-center
+            p Menu
+            h3 Chinese
+          .row.gy-5
+        #menu-drinks.tab-pane.fade.menu-drinks
+          .tab-header.text-center
+            p Menu
+            h3 Drinks
+          .row.gy-5
+        #menu-ice-cream.tab-pane.fade.menu-ice-cream
+          .tab-header.text-center
+            p Menu
+            h3 Ice-Cream
+          .row.gy-5
+  form.itemimageupdateform(action='/menu/updateItemImage' style='display:none;' enctype='multipart/form-data')
+    input.id(type='text' name='id' value='id')
+    input.category(type='text' name='category' value='category')
+    input#image(type='file' name='image' accept='image/')
+    button(type='submit') submit
+

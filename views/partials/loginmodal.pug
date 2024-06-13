@@ -1,0 +1,85 @@
+//- Student create account
+.modal.fade#authModalStudentSignUp(aria-hidden='true', aria-labelledby='authModalToggleLabel')
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-header
+        h1.modal-title.fs-5#authModalToggleLabel Student Signup - MagicalMeals
+        button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
+      .modal-body
+        form.signupForm(action='/auth/signup', data-role='student', data-type='auth')
+          .mb-3
+            label.form-label(for='fullname1') FullName:
+            input.form-control#fullname1(type='text', name='name')
+            .text-danger.name_error
+          .mb-3
+            label.form-label(for='email1') Email:
+            input.form-control#email1(type='text', name='email')
+            .text-danger.email_error
+          .mb-3
+            label.form-label(for='signupPassword1') Password:
+            input.form-control#signupPassword1(type='password', name='password')
+            .text-danger.password_error
+          .mb-3
+            label.form-label(for='confirmPassword1') Confirm Password:
+            input.form-control#confirmPassword1(type='password', name='confirmPassword')
+            .text-danger.confirmPassword_error
+          button.btn.btn-primary.signupbtn(type='submit') Signup
+          a.btn.btn-outline-primary(href='/auth/google') SignIn Using CollegeID
+      .modal-footer
+        button.btn.btn-outline-primary.studentlogintrigger Want to login?
+
+//- Student login
+.modal.fade#authModalStudentLogin(aria-hidden='true', aria-labelledby='authModalToggleLabel2')
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-header
+        h1.modal-title.fs-5#authModalToggleLabel2 Login - Student
+        button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
+      .modal-body
+        form#loginFormStudent(action='/auth/login', data-role='student', data-type='auth')
+          .mb-3
+            label.form-label(for='loginemail') Email:
+            input.form-control#loginemail(type='text', name='email')
+          .mb-3
+            label.form-label(for='loginPassword') Password:
+            input.form-control#loginPasswordStudent(type='password', name='password')
+          button.btn.btn-primary.loginbtn(type='submit') Login
+          a.btn.btn-outline-primary(href='/auth/google') SignIn Using CollegeID
+          .mt-3.text-danger.login_error
+      .modal-footer
+        button.btn.btn-outline-primary.studentsignuptrigger Signup
+
+//- Staff login
+.modal.fade#authModalStaffLogin(aria-hidden='true', aria-labelledby='authModalToggleLabel2')
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-header
+        h1.modal-title.fs-5#authModalToggleLabel2 Login - Staff
+        button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
+      .modal-body
+        form#loginFormStaff(action='/auth/login', data-role='staff', data-type='auth')
+          .mb-3
+            label.form-label(for='loginemail2') Email:
+            input.form-control#loginemail2(type='text', name='email')
+          .mb-3
+            label.form-label(for='loginPassword2') Password:
+            input.form-control#loginPassword2(type='password', name='password')
+          button.btn.btn-primary.loginbtn(type='submit') Login
+          button.btn.btn-outline-primary.ownerlogintrigger(type='button') Login as Owner
+          .login_error.text-danger
+      .modal-footer
+
+//- Owner login
+.modal.fade#authModalOwnerLogin(aria-hidden='true', aria-labelledby='authModalToggleLabel3')
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-header
+        h1.modal-title.fs-5#authModalToggleLabel3 Login - Canteen Owner
+        button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
+      .modal-body
+        form#loginFormOwner(action='/auth/ownerlogin', data-role='owner', data-type='auth')
+          .mb-3
+            label.form-label(for='secrettoken') Secret Token:
+            input.form-control#secrettoken(type='password', name='token')
+          button.btn.btn-primary.loginbtn(type='submit') Login
+      .modal-footer

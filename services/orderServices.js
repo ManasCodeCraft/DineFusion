@@ -1,6 +1,7 @@
 const Order = require('../models/Order')
 const User = require('../models/authModel')
-const { asyncHandler } = require('../utils/errorHandlers')
+const CanteenMenuModel = require('../models/canteenMenuModel')
+const { asyncHandler } = require('../utils/functionWrappers')
 
 module.exports.ifOrderIsCompleted = asyncHandler(async (id)=>{
     const order = await Order.findById(id)
@@ -26,7 +27,7 @@ module.exports.getOrderItems = asyncHandler(async (id)=>{
     }
     let orderdetails = "";
     for (const item of items) {
-      let item_ = await canteenMenuModel.findById(item.menuItem);
+      let item_ = await CanteenMenuModel.findById(item.menuItem);
       let item_name = item_.itemName;
       orderdetails += `${item.quantity} X ${item_name}, `;
     }

@@ -1,0 +1,42 @@
+extends ../layouts/owner
+
+block jsScript 
+    script(src="/js/order_request.js") 
+
+block content
+   .container-fluid.mt-5.ownerrequestcontainer
+     .container-fluid.ownerheader
+       h1.text-center.display.fw-bold Order Requests
+     #accordionRequests.accordion
+       .accordion-item
+         h2#newRequests.accordion-header
+           button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapseNewRequests' aria-expanded='true' aria-controls='collapseNewRequests')
+             | New Requests
+         #collapseNewRequests.accordion-collapse.collapse.show(aria-labelledby='newRequests')
+           #newrequestaccordion.accordion-body
+       .accordion-item
+         h2#acceptedRequests.accordion-header
+           button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapseAcceptedRequests' aria-expanded='true' aria-controls='collapseAcceptedRequests')
+             | Accepted Requests
+         #collapseAcceptedRequests.accordion-collapse.collapse.show(aria-labelledby='acceptedRequests')
+           #acceptedrequestaccordion.accordion-body
+       .accordion-item
+         h2#inProgressRequests.accordion-header
+           button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapseInProgressRequests' aria-expanded='true' aria-controls='collapseInProgressRequests')
+             | In Progress Requests
+         #collapseInProgressRequests.accordion-collapse.collapse.show(aria-labelledby='inProgressRequests')
+           #inprogressrequestaccordion.accordion-body
+       .accordion-item
+         h2#onthewayRequests.accordion-header
+           button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapseonthewayRequests' aria-expanded='true' aria-controls='collapseonthewayRequests')
+             | On the Way Requests
+         #collapseonthewayRequests.accordion-collapse.collapse.show(aria-labelledby='onthewayRequests')
+           #onthewayrequestaccordion.accordion-body
+       .accordion-item
+         h2#cancellationRequests.accordion-header
+           button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapseCancellationRequests' aria-expanded='true' aria-controls='collapseCancellationRequests')
+             | Cancellation Requests
+         #collapseCancellationRequests.accordion-collapse.collapse.show(aria-labelledby='cancellationRequests')
+           #cancellationrequestaccordion.accordion-body
+
+

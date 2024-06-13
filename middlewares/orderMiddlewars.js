@@ -1,4 +1,4 @@
-const { asyncRequestHandler } = require("../utils/errorHandlers");
+const { asyncRequestHandler } = require("../utils/functionWrappers");
 const { getError } = require("../utils/format");
 
 

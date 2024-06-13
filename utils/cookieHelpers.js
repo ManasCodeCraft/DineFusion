@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { syncHandler, asyncHandler } = require('./errorHandlers');
+const { syncHandler, asyncHandler } = require('./functionWrappers');
 const { logincookietoken } = require('../config/config');
 const jwtKey = require('../config/config').jwtKey;
 

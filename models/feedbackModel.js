@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('../config/database');
 
 const feedbackSchema = new mongoose.Schema({
   order: { type: mongoose.Schema.Types.ObjectId, ref: 'Order', required: true },

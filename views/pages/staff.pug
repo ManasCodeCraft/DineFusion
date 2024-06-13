@@ -1,0 +1,47 @@
+extends ../layouts/owner
+
+block cssStyle 
+    link(href="/css/staff.css" rel="stylesheet")
+
+block jsScript 
+    script(src="/js/staff.js") 
+
+block content 
+  .staff
+    h2.heading Staff Details
+    button.btn.btn-primary.staffsignuptrigger Add Staff
+    table.table
+      // Updated styling for header
+      thead
+        tr
+          th(scope='col') #
+          th(scope='col') Name
+          th(scope='col') Email
+          th(scope='col') Remove
+          // New column
+      tbody
+        tr
+          th(scope='row') 1
+          td Samuel
+          td samuel@gmail.com
+          td
+            button.btn.btn-danger(type='button' onclick='removeUser(this)')
+              | Remove
+          // New cell with Bootstrap button
+        tr
+          th(scope='row') 2
+          td Rakesh
+          td rakesh@gmail.com
+          td
+            button.btn.btn-danger(type='button' onclick='removeUser(this)')
+              | Remove
+          // New cell with Bootstrap button
+        tr
+          th(scope='row') 3
+          td Ramprashad
+          td ramprashad@gmail.com
+          td
+            button.btn.btn-danger(type='button' onclick='removeUser(this)')
+              | Remove
+          // New cell with Bootstrap button
+

@@ -1,0 +1,234 @@
+.my-orders-heading {
+  max-width: 800px;
+  margin: auto;
+  margin-top: 8rem;
+  margin-bottom: 2rem;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'sans-serif';
+  font-size: 2.5rem !important;
+  color: #333;
+  font-weight: 900;
+}
+
+
+.order-item {
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-details {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.order-details {
+  color: #333;
+  margin-bottom: 10px;
+  cursor: default;
+}
+
+.order-status {
+  margin-left: 0px ;
+  margin-right: 20px;
+  font-weight: bold;
+  margin-bottom: 5px; /* Add margin below status */
+}
+
+.order-price {
+  color: #4CAF50;
+  margin-bottom: 5px; /* Add margin below price */
+}
+
+.order-action {
+  background-color: #ff5733;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.order-action:hover {
+  background-color: #e64722;
+}
+/* Style for modals */
+.modal-content {
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.modal-header {
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+}
+
+.modal-body {
+  padding: 15px;
+}
+
+.modal-footer {
+  padding: 15px;
+  border-top: 1px solid #ccc;
+}
+
+/* Style for buttons */
+/* .btn {
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+} */
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.btn-close {
+  color: #000;
+}
+
+/* Style for order items */
+.order-item {
+  margin-bottom: 20px;
+}
+
+.order-details {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.order-status {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #ff5733; /* Custom color */
+}
+
+.order-price {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.order-details-text {
+  color: #4CAF50; /* Custom color */
+}
+
+.order-actions {
+  margin-top: 10px;
+}
+
+.order-action {
+  margin-right: 10px;
+}
+
+/* Style for cancel order details */
+.cancel-order-details {
+  font-family: 'Arial', sans-serif; /* Custom font */
+  font-size: 1rem;
+  color: #8e44ad; /* Custom color */
+}
+
+
+/* Style for buttons */
+/* .btn {
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+} */
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.btn-close {
+  color: #000;
+}
+
+/* Style for order items */
+.order-item {
+  margin-bottom: 20px;
+}
+
+.order-details {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.order-status {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #9aa31f; /* Custom color */
+}
+
+.order-price {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.order-details-text {
+  color: #4CAF50; /* Custom color */
+}
+
+.order-actions {
+  margin-top: 10px;
+}
+
+.order-action {
+  margin-right: 10px;
+}
+.modal-body,
+.order-details,
+.cancel-order-details
+{
+  cursor: default;
+}
+
+/* Style for order items container */
+
+
+/* Style for order item */
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+  #orders-list {
+      flex-direction: column;
+      align-items: center;
+  }
+  
+  .order-item {
+      width: 100%;
+  }
+}
+
+

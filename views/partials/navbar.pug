@@ -1,0 +1,22 @@
+header#header.header.fixed-top.d-flex.align-items-center
+  .container.d-flex.align-items-center.justify-content-between
+    a.logo.d-flex.align-items-center.me-auto.me-lg-0(href='/')
+      img(src='/img/logo.png' alt='')
+    nav#navbar.navbar
+      ul#menu-items
+        li
+          a(href='/') Home
+        li
+          a(href='/menu#menu') Menu
+        li
+          a(href='/#contact') Contact
+    a.btn.btn-info.navauthbtn.studentlogintrigger Login
+    i.mobile-nav-toggle.mobile-nav-show.bi.bi-list.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+    ul.dropdown-menu.navbardropdown
+      li
+        a.dropdown-item.active(href='/') Home
+      li
+        a.dropdown-item(href='/menu#menu') Menu
+      li
+        a.dropdown-item(href='/#contact') Contact
+    i.mobile-nav-toggle.mobile-nav-hide.d-none.bi.bi-x

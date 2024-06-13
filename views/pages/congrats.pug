@@ -1,0 +1,26 @@
+extends ../layouts/user.pug
+
+block cssStyle 
+    link(href="/css/congrats.css" rel="stylesheet")
+
+block jsScript 
+    script(src="/js/congrats.js") 
+
+block content
+    .contain
+    .congrats
+        h1 Congrat
+        span.hide ulation
+        | s!
+        .done
+        svg#tick(version="1.1", xmlns="http://www.w3.org/2000/svg", "xmlns:xlink"="http://www.w3.org/1999/xlink", x="0px", y="0px", viewBox="0 0 37 37", style="enable-background: new 0 0 37 37", "xml:space"="preserve")
+            path.circ.path(style="fill: rgb(13, 108, 249); stroke: #0e4bcf; stroke-width: 3; stroke-linejoin: round; stroke-miterlimit: 10;", d="M30.5,6.5L30.5,6.5c6.6,6.6,6.6,17.4,0,24l0,0c-6.6,6.6-17.4,6.6-24,0l0,0c-6.6-6.6-6.6-17.4,0-24l0,0C13.1-0.2,23.9-0.2,30.5,6.5z")
+            polyline.tick.path(style="fill: none; stroke: #fff; stroke-width: 3; stroke-linejoin: round; stroke-miterlimit: 10;", points="11.6,20 15.9,24.2 26.4,13.8")
+        .text
+        p You order has been placed successfully.
+        a.trackorderbtn
+        button.button
+            h5.link Track Order
+        a(href="/")
+        button.button
+            h5.link Return Home

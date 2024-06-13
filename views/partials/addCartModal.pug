@@ -1,0 +1,17 @@
+div.modal.fade(
+  id="addcartModal",
+  tabindex="-1",
+  aria-labelledby="addcartModalLabel",
+  aria-hidden="true"
+)
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        h5#addcartModalLabel.modal-title Add Item
+      div.modal-body
+        .mb-3
+          label.form-label(for="itemquantity") Item Quantity
+          input#quantity.form-control(type="number", name="quantity", value="1")
+        button.btn.btn-primary.addtocartbtn Add to cart
+      div.modal-footer
+        button.btn.btn-secondary(type="button", data-bs-dismiss="modal") Close

@@ -1,5 +1,5 @@
 const { addNewItemInMenu, removeItemFromMenu, updateMenuItemImage, getAllItemsInMenu, updateMenuItem } = require('../services/canteenMenuServices');
-const { asyncRequestHandler } = require('../utils/errorHandlers');
+const { asyncRequestHandler } = require('../utils/functionWrappers');
 const { unexpectedError, getError } = require('../utils/format');
 
 const fs = require('fs').promises

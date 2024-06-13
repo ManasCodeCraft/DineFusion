@@ -1,0 +1,31 @@
+extends ../layouts/user
+
+block cssStyle 
+    link(href="/css/userFeedback.css" rel="stylesheet")
+
+block jsScript 
+    script(src="/js/userFeedback.js") 
+
+block content 
+    .container.feedback-container
+    .feedbackheaderwrapper
+        h1.feedback-header 𝐆𝐢𝐯𝐞 𝐔𝐬 𝐘𝐨𝐮𝐫 𝐅𝐞𝐞𝐝𝐛𝐚𝐜𝐤
+    .feedback-form
+        .rating-box
+        .feedbackcontent
+            header How was your experience?
+            .stars
+            i.fa-solid.fa-star
+            i.fa-solid.fa-star
+            i.fa-solid.fa-star
+            i.fa-solid.fa-star
+            i.fa-solid.fa-star
+        .input-group
+        label(for='experience') Your Experience:
+        textarea#experience(rows='5')
+        .input-group
+        label(for='improvements') Suggestions for Improvement:
+        textarea#improvements(rows='5')
+        .submitbtnwrapper
+        button#submitBtn Submit Feedback
+        #errorContainer.alert.alert-danger(style='display: none;')

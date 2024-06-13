@@ -1,0 +1,108 @@
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(45deg, #a4a1a1bd, #9fa2a08e);
+}
+
+.feedback-container{
+  margin-top: 7rem !important;
+  border-radius: 25px;
+}
+
+.feedbackcontent {
+  position: relative;
+  background: #fff;
+  padding: 25px 50px 35px;
+  margin:auto;
+  text-align: center;
+}
+
+.feedbackcontent header {
+  font-size: 22px;
+  color: #dadada;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.feedbackcontent .stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+.stars i {
+  color: #e6e6e6;
+  font-size: 35px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.stars i.active {
+  color: #ff9c1a;
+}
+
+.feedback-form {
+  background-color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#submitBtn {
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#submitBtn:hover {
+  background-color: #0056b3;
+}
+
+.feedbackheaderwrapper{
+  padding: 20px; 
+  margin-top: 20px;
+ background-color: #007bff;
+ color: white;
+}
+
+.feedback-header{
+  font: italic;
+ font-size: 2rem;
+ text-align: center;
+ width: 100%;
+}
+
+.submitbtnwrapper{
+  width: 100%;
+  text-align: center;
+}

@@ -1,5 +1,5 @@
 const path = require('path')
-const { asyncRequestHandler } = require('../utils/errorHandlers');
+const { asyncRequestHandler } = require('../utils/functionWrappers');
 const { getTotalPrice } = require('../services/canteenMenuServices');
 const { registerOrder, getOrderItems, getAllOrderForUser, getAllOrders, updateUserOrder, getOrderById } = require('../services/orderServices');
 const { formatOrderForUser, formatOrderForStaff, unexpectedError, formatOrderTrackData } = require('../utils/format');
@@ -70,6 +70,9 @@ module.exports.updatePickUptime = asyncRequestHandler(async (req, res) => {
 module.exports.viewUserOrders = asyncRequestHandler(async (req, res) => {
     const userId = req.userid; 
     const userOrders = await getAllOrderForUser(userId);
+    if(!userOrders){
+      throw unexpectedError(404);
+    }
 
     var userOrdersData = []
     for (const order of userOrders) {
@@ -91,19 +94,20 @@ module.exports.orderTrackData = asyncRequestHandler(async function(req,res){
 
 });
 
-module.exports.congrats = async function(req,res){
-  res.sendFile(path.resolve(path.join(__dirname,'../public/congrats.html')))
+
+module.exports.congrats = async function(req, res) {
+  res.render('pages/congrats');
 }
 
-module.exports.getMyOrdersPage = async function(req,res){
-  res.sendFile(path.resolve(path.join(__dirname,'../public/Your_Order.html')))
+module.exports.getMyOrdersPage = async function(req, res) {
+  res.render('pages/Your_Order');
 }
 
-module.exports.getorderrequest = async function(req,res){
-   res.sendFile(path.resolve(path.join(__dirname,'../public/order_request.html')))
+module.exports.getorderrequest = async function(req, res) {
+  res.render('pages/order_request');
 }
 
-module.exports.gettrackorder = async function(req,res){
-   res.sendFile(path.resolve(path.join(__dirname,'../public/track.html')))
+module.exports.gettrackorder = async function(req, res) {
+  res.render('pages/track');
 }
 

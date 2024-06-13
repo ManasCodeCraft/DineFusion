@@ -1,0 +1,12 @@
+extends ../layouts/user
+
+block cssStyle 
+   link(rel="stylesheet" href="/css/YourOrder.css")
+
+block jsScript 
+    script(src="/js/YourOrder.js") 
+
+block content 
+  .container.fw-bold.my-orders-heading
+    h1 My Orders
+    #orders-list

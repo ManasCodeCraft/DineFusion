@@ -1,4 +1,4 @@
-const { syncHandler } = require("./errorHandlers");
+const { syncHandler } = require("./functionWrappers");
 
 module.exports.formatValidationError = syncHandler(function (error) {
   var errors = {};
@@ -14,7 +14,7 @@ module.exports.formatValidationError = syncHandler(function (error) {
 });
 
 module.exports.getError = syncHandler(function (statusCode, name, message) {
-  var error = new Error(message);
+  const error = new Error(message);
   error.name = name;
   error.statusCode = statusCode;
   return error;
