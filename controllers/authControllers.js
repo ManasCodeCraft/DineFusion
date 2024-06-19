@@ -23,7 +23,7 @@ passport.use(
         } else {
           let userData = {
             name: profile.displayName,
-            collegeId: profile.emails[0].value,
+            email: profile.emails[0].value,
             googleId: profile.id,
             role: 'student'
           }
@@ -39,8 +39,8 @@ passport.use(
           if(errors['googleId']){
             err.message = errors['googleId'];
           }
-          else if(errors['collegeId']){
-            err.message = errors['collegeId']
+          else if(errors['email']){
+            err.message = errors['email']
           }
           else{
             err.message = 'user login failed'

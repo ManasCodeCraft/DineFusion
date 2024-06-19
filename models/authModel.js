@@ -15,18 +15,27 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
-    match: [
-      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-      "Please enter a valid email address",
-    ],
-    required: [true, 'Email is required']
+    required: [true, "Email is required"],
+    validate: {
+      validator: function () {
+        if(this.googleId){
+            let regex = /^[a-zA-Z]+\.\d{8}@mnnit\.ac\.in$/
+            return regex.test(this.email)
+        }
+        else{
+          let regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/
+          return regex.test(this.email)
+        }
+      },
+      message: "Invalid email or collegeId"
+    },
   },
   password: {
     type: String,
     validate: {
       validator: function () {
-        if(this.googleId){
-           return true;
+        if (this.googleId) {
+          return true;
         }
         return this.password;
       },
@@ -38,10 +47,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     validate: {
       validator: function () {
-        if(this.googleId){
-           return true;
+        if (this.googleId) {
+          return true;
         }
-        if (this.confirmPassword && (this.confirmPassword === this.password)) {
+        if (this.confirmPassword && this.confirmPassword === this.password) {
           return true;
         }
         return false;
@@ -49,23 +58,6 @@ const userSchema = new mongoose.Schema({
       message: "Confirm Password is required",
     },
   },
-  // collegeId: {
-  //   type: String,
-  //   match: [
-  //     /^[a-zA-Z]+(?:\.[0-9]+)@mnnit\.ac\.in$/,
-  //     "Please sign in with your college id",
-  //   ],
-  //   unique: true,
-  //   validate: {
-  //     validator: function () {
-  //       if(this.googleId){
-  //           return this.collegeId;
-  //       }
-  //       return true;
-  //     },
-  //     message: "CollegeId is required",
-  //   },
-  // },
   role: {
     type: String,
     enum: ["student", "staff"],
@@ -75,9 +67,9 @@ const userSchema = new mongoose.Schema({
 
 userSchema.pre("save", async function (next) {
   try {
-    if(this.googleId){
-       this.email = this.collegeId;
-       this.collegeId = undefined;
+    if (this.googleId) {
+      this.email = this.collegeId;
+      this.collegeId = undefined;
     }
     if (this.password) {
       if (this.password != this.confirmPassword) {

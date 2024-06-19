@@ -8,6 +8,15 @@
 
 .logo {
   text-decoration: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: inherit;
+}
+
+.header-container{
+  height: inherit;
 }
 
 @media (max-width: 575px) {
@@ -23,20 +32,8 @@
 
 .header .logo img {
   border-radius: 5px;
-  max-height: 40px;
-  margin-right: 6px;
-}
-
-.header .logo h1 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #000;
-  margin: 0;
-  font-family: var(--font-secondary);
-}
-
-.header .logo h1 span {
-  color: var(--color-primary);
+  max-height: 100%;
+  /* margin-right: 6px; */
 }
 
 .header .btn-place-order.place-order,

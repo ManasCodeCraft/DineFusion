@@ -35,7 +35,7 @@ module.exports.formatOrderForUser = syncHandler(function (order, orderdetails) {
   return {
     id: order._id,
     status: order.status,
-    details: orderdetails,
+    details: orderdetails.orderdetails,
     price: order.price,
     pickupTime: order.pickupTime,
     feedback: order.feedback,
@@ -50,7 +50,7 @@ module.exports.formatOrderForStaff = syncHandler(function (
   username
 ) {
   return {
-    orderdetails: orderDetails,
+    orderdetails: orderDetails.orderdetails,
     status: order.status,
     orderid: order._id,
     user: username,

@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
       })
       .catch(error => {
-          console.log(error);
+          console.log("An error occurred in making request to server"), error;
       });
   }
   
