@@ -25,5 +25,4 @@ module.exports = {
     googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
     googleCallBack: '/auth/google/callback',
 
-
 }
