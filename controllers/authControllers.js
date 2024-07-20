@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const { prepareLoginCookie } = require("../utils/cookieHelpers");
 const { googleClientID, googleClientSecret, googleCallBack, logincookietoken, ownerlogintoken } = require("../config/config");
-const { registerUser, getUserByEmail, fetchAllStaff, removeStaffMember, getUserByGoogleId } = require("../services/authServices");
+const { registerUser, getUserByEmail, fetchAllStaff, removeStaffMember, getUserByGoogleId, verifyUserEmail, sendVerifyLink, checkEmailVerified } = require("../services/authServices");
 const { asyncRequestHandler } = require("../utils/functionWrappers");
 const { unexpectedError, getError } = require("../utils/format");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
@@ -102,12 +102,15 @@ module.exports.loginUser = asyncRequestHandler(async (req, res) => {
       throw getError(400, 'Login Failed', 'Incorrect password')
     }
 
+    if(user.verifyEmailToken){
+       sendVerifyLink(user._id);
+       throw getError(400, 'Login Failed', 'Please verify your email')
+    }
+
     const mycookie = {
       user: user,
       login: true,
     };
-
-    console.log('cookie set')
 
     let cookieValue = prepareLoginCookie(mycookie)
 
@@ -115,6 +118,15 @@ module.exports.loginUser = asyncRequestHandler(async (req, res) => {
     req.userid = user._id;
 
     res.status(200).send();
+})
+
+module.exports.verifyEmail = asyncRequestHandler(async function (req,res){
+  const { userId, token} = req.params;
+  const result = await verifyUserEmail(userId, token);
+  if(result){
+     return res.status(200).redirect('/');
+  } 
+  throw getError(400, 'Email Verification Failed', 'Invalid token')
 })
 
 module.exports.ownerlogin = asyncRequestHandler(async function (req, res) {
@@ -146,12 +158,18 @@ module.exports.checkuserlogin = asyncRequestHandler(async function (req, res){
     if (!token) {
       return res.status(400).json({'login':false})
     }
-    jwt.verify(token, hashkey, (err, decoded) => {
+    jwt.verify(token, hashkey, async (err, decoded) => {
       if (err) {
        return res.status(400).json({'login':false})
       }
+      if(!decoded.user){
+        return res.status(400).json({'login':false})
+      }
       if(decoded.user.role === 'staff'){
         return res.status(400).json({'login':false})
+      }
+      if(!(await checkEmailVerified(decoded.user._id))){
+         return res.status(400).json({'login':false})
       }
       res.status(200).json({'login':true})
     });
@@ -163,7 +181,7 @@ module.exports.checkstafflogin = async function (req, res){
       req.userid = null;
       return res.status(400).json({'login':false})
     }
-    jwt.verify(token, hashkey, (err, decoded) => {
+    jwt.verify(token, hashkey, async (err, decoded) => {
       if (err) {
         req.userid = null;
        return res.status(400).json({'login':false})
@@ -171,9 +189,10 @@ module.exports.checkstafflogin = async function (req, res){
       if(decoded.owner){
         return res.status(400).json({'login': false})
       }
-      const userid = decoded.user._id;
-      req.userid = userid;
       if(decoded.user.role === 'staff'){
+        if(!(await checkEmailVerified(decoded.user._id))){
+          return res.status(400).json({'login':false})
+         }
         return res.status(200).json({'login':true})
       }
       res.status(400).json({'login':false})

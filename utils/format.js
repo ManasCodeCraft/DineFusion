@@ -6,6 +6,7 @@ module.exports.formatValidationError = syncHandler(function (error) {
     errors[field] = error.errors[field].message;
   }
 
+  error.name = "ValidationError"
   error.message = "Auth Validation Failed";
   error.statusCode = 400;
   error.errors = errors;

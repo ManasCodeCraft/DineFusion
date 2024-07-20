@@ -1,8 +1,7 @@
 const { formatValidationError } = require("./format");
+const {detectClient} = require('./requestAgent')
 
-// Global error handler middleware
 module.exports.errorHandler = function errorHandler(err, req, res, next) {
-    console.log('Global Error Handler Called')
     // checking for mongoose validation error
     if(err.name === 'ValidationError'){
         return res.status(400).json(formatValidationError(err))
@@ -23,11 +22,32 @@ module.exports.errorHandler = function errorHandler(err, req, res, next) {
         console.error(err.stack); 
     }
 
-    res.status(statusCode).json({
-        status: 'error',
-        statusCode,
-        message,
-        name,
-        reason
-    });
+    const client = detectClient(req);
+    if(client){
+        if(client === 'Browser'){
+            return res.status(statusCode).send(`
+             <div style="width:100%; height:100vh; display:flex; justify-content: center; align-items:center; flex-direction:column;">
+                <h1>${statusCode}</h1>
+                <p>${message}</p>
+                <a href="/">Return to Homepage</a>
+             </div>
+            `)
+        }
+        else if(client === 'Fetch API'){
+            return res.status(statusCode).json({
+                status: 'error',
+                statusCode,
+                message,
+                name,
+                reason
+            })
+        }
+    }
+    else{
+        return res.status(statusCode).send(`
+             <div style="width:100%; height:100vh; display:flex; justify-content: center; align-items:center; flex-direction:column;">
+                <h1>Your Browser is not secure</h1>
+             </div>
+        `)
+    }
 }

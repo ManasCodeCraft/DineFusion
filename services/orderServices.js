@@ -5,7 +5,7 @@ const { asyncHandler } = require('../utils/functionWrappers')
 
 module.exports.ifOrderIsCompleted = asyncHandler(async (id)=>{
     const order = await Order.findById(id)
-    if(order.status === 'completed'){
+    if(order.status === 'Completed'){
         return true
     }else{
         return false

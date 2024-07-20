@@ -17,43 +17,53 @@ stars.forEach((star, index1) => {
   });
 });
 
-
 document.addEventListener("DOMContentLoaded", function () {
   const submitBtn = document.getElementById("submitBtn");
   const feedbackMessage = document.getElementById("feedbackMessage");
   const errorContainer = document.getElementById("errorContainer");
 
   submitBtn.addEventListener("click", async function () {
-      const ratings = document.querySelectorAll(".fa-solid.fa-star").length;
-      const experience = document.getElementById("experience").value;
-      const suggestions = document.getElementById("improvements").value;
+    const ratings = document.querySelectorAll(".fa-solid.fa-star").length;
+    const experience = document.getElementById("experience").value;
+    const suggestions = document.getElementById("improvements").value;
 
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      var order = urlParams.get("order");
+
+      const response = await fetch("/feedback/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ order, ratings, experience, suggestions }),
+      });
+
+      var data = {};
       try {
-          const urlParams = new URLSearchParams(window.location.search);
-          var order = urlParams.get('order');
-         
-          const response = await fetch("/feedback/create", {
-              method: "POST",
-              headers: {
-                  "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ order ,ratings, experience, suggestions }),
-          });
-
-          if (!response.ok) {
-              throw new Error("Failed to submit feedback");
-          }
-
-          const data = await response.json();
-
-          if(response.status === 200){
-            window.location.href = `/feedback/thanks/?id=${data.id}`
-         }
-      } catch (error) {
-          console.error("Error submitting feedback:", error.message);
-          errorContainer.style.display = "block";
-          errorContainer.textContent = "Failed to submit feedback. Please try again later.";
+        data = await response.json();
+      } catch (err) {
+        try {
+          data = await response.text();
+          document.body = data;
+          return; 
+        } catch (err) {
+          data = {};
+        }
       }
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to submit feedback");
+      }
+
+      if (response.status === 200) {
+        window.location.href = `/feedback/thanks/?id=${data.id}`;
+      }
+    } catch (error) {
+      console.error("Error submitting feedback:", error.message);
+      errorContainer.style.display = "block";
+      errorContainer.textContent =
+        error.message || "Failed to submit feedback. Please try again later.";
+    }
   });
 });
-

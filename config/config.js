@@ -14,6 +14,7 @@ module.exports = {
 
     // server
     port: process.env.PORT,
+    baseURL : (process.env.NODE_ENV === 'production') ? 'https://dinefusion.onrender.com' : 'http://localhost:8080',
 
     // auth
     jwtKey: process.env.JWT_KEY,
@@ -24,5 +25,11 @@ module.exports = {
     googleClientID: process.env.GOOGLE_CLIENT_ID,
     googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
     googleCallBack: '/auth/google/callback',
+
+    // mail
+    mailId: process.env.MAIL_ID,
+    mailPassword:  process.env.MAIL_PWD,
+    mailHost: process.env.MAIL_HOST,
+    mailPort: process.env.MAIL_PORT,
 
 }

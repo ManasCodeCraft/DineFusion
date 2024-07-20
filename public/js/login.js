@@ -15,6 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
     keyboard: false,
   });
 
+  var MessageModal = new bootstrap.Modal('#messageModal', {
+    keyboard: false,
+  })
+
 
   function addClickEventListeners(selector, callback) {
       var elements = document.querySelectorAll(selector);
@@ -96,16 +100,18 @@ document.addEventListener("DOMContentLoaded", function () {
              if(role === 'staff'){
               window.location.href = '/ownerpage'
              }
-             renderchangeonlogin()
-          }
-          else{
+
+             if(event.target.classList.contains('login')){
+                renderchangeonlogin()
+             }
+
+             throw new Error('ok');
           }
           return response.json();
       })
       .then(data => {
-          if(data.message=='Validation Error'){
+          if(data.name=='ValidationError'){
               const validationError = data
-              console.log(validationError);
               for (const field in validationError.errors) {
                   const errorMessage = validationError.errors[field];
                   const errorElement = form.querySelector(`.${field}_error`);
@@ -123,18 +129,26 @@ document.addEventListener("DOMContentLoaded", function () {
               }
           }
           else{
+             form.querySelector('.general_error').innerHTML = data.message || "An unexpected error occurred"
+          }
+      })
+      .catch(error => {
+          if(error.message === 'ok'){
             StudentSignUpModal.hide();
             OwnerLoginModal.hide();
             
             StaffLoginModal.hide();
             StudentLoginModal.hide();
 
+            if(form.classList.contains('signup')){
+               MessageModal.show();
+            }
+
             if(form.dataset.role === 'owner'){
                 window.location.href = '/ownerpage'
             }
+
           }
-      })
-      .catch(error => {
           console.log("An error occurred in making request to server"), error;
       });
   }

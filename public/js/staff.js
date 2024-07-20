@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     var StaffLoginModal = new bootstrap.Modal("#authModalStaffSignUp", {
         keyboard: false,
     });
+    var MessageModal = new bootstrap.Modal('#messageModal', {
+        keyboard: false,
+      })
     document.querySelector('.staffsignuptrigger').addEventListener('click',()=>{
         StaffLoginModal.show();
     })
@@ -41,13 +44,13 @@ document.addEventListener('DOMContentLoaded', async function () {
             `;
             staffTable.appendChild(row);
             staffTable.querySelector('button').addEventListener('click',()=>{
-                removeUser(staff._id)
+                removeUser(staff.name, staff._id)
             })
         });
     }
     
-    async function removeUser(staffId) {
-        let ans = confirm('Are you sure to remove this member?')
+    async function removeUser(staffName, staffId) {
+        let ans = confirm(`Are you sure to remove ${staffName} from staff?`)
         if(ans){
         try {
             const response = await fetch('/auth/removestaff', {
@@ -93,14 +96,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         .then(response => {
             if(response.status==200){
                  StaffLoginModal.hide();
-                 renderStaff(); 
+                 MessageModal.show();
+                //  renderStaff(); 
             }
             return response.json();
         })
         .then(data => {
-            if(data.message=='Validation Error'){
+            if(data.name=='ValidationError'){
                 const validationError = data
-                console.log(validationError);
                 for (const field in validationError.errors) {
                     const errorMessage = validationError.errors[field];
                     const errorElement = form.querySelector(`.${field}_error`);

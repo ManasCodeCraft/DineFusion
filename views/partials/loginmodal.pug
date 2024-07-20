@@ -6,7 +6,7 @@
         h1.modal-title.fs-5#authModalToggleLabel Student Signup - MagicalMeals
         button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
       .modal-body
-        form.signupForm(action='/auth/signup', data-role='student', data-type='auth')
+        form.signupForm.signup(action='/auth/signup', data-role='student', data-type='auth')
           .mb-3
             label.form-label(for='fullname1') FullName:
             input.form-control#fullname1(type='text', name='name')
@@ -23,8 +23,10 @@
             label.form-label(for='confirmPassword1') Confirm Password:
             input.form-control#confirmPassword1(type='password', name='confirmPassword')
             .text-danger.confirmPassword_error
+          .mb-3 
+            .text-danger.general_error
           button.btn.btn-primary.signupbtn(type='submit') Signup
-          a.btn.btn-outline-primary(href='/auth/google') SignIn Using CollegeID
+          a.btn.btn-outline-primary.mx-2(href='/auth/google') SignIn Using Google
       .modal-footer
         button.btn.btn-outline-primary.studentlogintrigger Want to login?
 
@@ -33,18 +35,20 @@
   .modal-dialog.modal-dialog-centered
     .modal-content
       .modal-header
-        h1.modal-title.fs-5#authModalToggleLabel2 Login - Student
+        h1.modal-title.fs-5.fw-bold#authModalToggleLabel2 Login
         button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
       .modal-body
-        form#loginFormStudent(action='/auth/login', data-role='student', data-type='auth')
+        form#loginFormStudent.login(action='/auth/login', data-role='student', data-type='auth')
           .mb-3
             label.form-label(for='loginemail') Email:
             input.form-control#loginemail(type='text', name='email')
           .mb-3
             label.form-label(for='loginPassword') Password:
             input.form-control#loginPasswordStudent(type='password', name='password')
+          .mb-3 
+            .text-danger.general_error
           button.btn.btn-primary.loginbtn(type='submit') Login
-          a.btn.btn-outline-primary(href='/auth/google') SignIn Using CollegeID
+          a.btn.btn-outline-primary.mx-2(href='/auth/google') SignIn Using Google
           .mt-3.text-danger.login_error
       .modal-footer
         button.btn.btn-outline-primary.studentsignuptrigger Signup
@@ -57,7 +61,7 @@
         h1.modal-title.fs-5#authModalToggleLabel2 Login - Staff
         button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
       .modal-body
-        form#loginFormStaff(action='/auth/login', data-role='staff', data-type='auth')
+        form#loginFormStaff.login(action='/auth/login', data-role='staff', data-type='auth')
           .mb-3
             label.form-label(for='loginemail2') Email:
             input.form-control#loginemail2(type='text', name='email')

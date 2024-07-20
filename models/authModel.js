@@ -30,6 +30,9 @@ const userSchema = new mongoose.Schema({
       message: "Invalid email or collegeId"
     },
   },
+  verifyEmailToken: {
+    type: String,
+  },
   password: {
     type: String,
     validate: {
@@ -45,18 +48,6 @@ const userSchema = new mongoose.Schema({
   },
   confirmPassword: {
     type: String,
-    validate: {
-      validator: function () {
-        if (this.googleId) {
-          return true;
-        }
-        if (this.confirmPassword && this.confirmPassword === this.password) {
-          return true;
-        }
-        return false;
-      },
-      message: "Confirm Password is required",
-    },
   },
   role: {
     type: String,
@@ -71,14 +62,18 @@ userSchema.pre("save", async function (next) {
       this.email = this.collegeId;
       this.collegeId = undefined;
     }
+
     if (this.password) {
-      if (this.password != this.confirmPassword) {
-        throw new Error("Passwords do not match");
+      if (this.isModified('password')) {
+        if (this.password !== this.confirmPassword) {
+          throw new Error("Passwords do not match");
+        }
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);
       }
       this.confirmPassword = undefined;
-      const salt = await bcrypt.genSalt(10);
-      this.password = await bcrypt.hash(this.password, salt);
     }
+
     next();
   } catch (error) {
     next(error);
