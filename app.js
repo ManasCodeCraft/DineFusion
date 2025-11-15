@@ -25,7 +25,7 @@ app.use(express.json());
 app.use("/", mainRouter);
 app.use('/auth',authRouter)
 app.use('/menu',canteenMenuRouter)
-app.use('/order',orderRouter)
+app.use('/order',orderRouter) 
 app.use('/feedback',feedbackRouter)
 app.route('/ownerpage').get((req,res)=>{
     res.redirect('/order/order-request')
