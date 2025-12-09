@@ -45,6 +45,7 @@ module.exports.sendVerifyLink = asyncHandler(async (userId)=>{
 
 module.exports.checkEmailVerified = asyncHandler(async (userId)=>{
     const user = await User.findById(userId);
+    if(user.googleId) return user;
     if(!user || user.verifyEmailToken) return null;
     return user;
 })
