@@ -25,7 +25,7 @@ passport.use(
             name: profile.displayName,
             email: profile.emails[0].value,
             googleId: profile.id,
-            role: 'student'
+            role: 'user'
           }
           const newUser = await registerUser(userData);
           return cb(null, newUser);
